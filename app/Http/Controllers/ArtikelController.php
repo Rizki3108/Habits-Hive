@@ -71,7 +71,7 @@ class ArtikelController extends Controller
      */
     public function show(Artikel $artikel)
     {
-        //
+        return view('artikels.show', compact('artikel'));
     }
 
     /**
@@ -82,7 +82,7 @@ class ArtikelController extends Controller
      */
     public function edit(Artikel $artikel)
     {
-        //
+        return view('artikels.edit', compact('artikel'));
     }
 
     /**
@@ -92,10 +92,24 @@ class ArtikelController extends Controller
      * @param  \App\Models\Artikel  $artikel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Artikel $artikel)
+    public function update(Request $request, $id)
     {
-        //
+        $artikel = Artikel::findOrFail($id);
+        $artikel->judul_artikel = $request->judul_artikel;
+        $artikel->deskripsi = $request->deskripsi;
+
+        if ($request->hasFile('image')) {
+            $artikel->deleteImage();
+            $img = $request->file('image');
+            $name = rand(1000, 9999) . $img->getClientOriginalName();
+            $img->move('images/artikel', $name);
+            $artikel->image = $name;
+
+        }
+        $artikel -> save();
+        return redirect()->route('artikel.index');
     }
+    
 
     /**
      * Remove the specified resource from storage.
