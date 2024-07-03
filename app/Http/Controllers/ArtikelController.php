@@ -8,13 +8,24 @@ use Illuminate\Http\Request;
 class ArtikelController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $artikel = Artikel::orderBy('id', 'desc')->get();
+        return view('artikels.index', compact('artikel'));
     }
 
     /**
@@ -24,7 +35,7 @@ class ArtikelController extends Controller
      */
     public function create()
     {
-        //
+        return view('artikels.create');
     }
 
     /**
@@ -35,7 +46,21 @@ class ArtikelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $artikel = new Artikel;
+        $artikel->judul_artikel = $request->judul_artikel;
+        $artikel->deskripsi = $request->deskripsi;
+        $artikel->image = $request->image;
+
+        //upload image
+        if ($request->hasFile('image')) {
+            $img = $request->file('image');
+            $name = rand(1000, 9999) . $img->getClientOriginalName();
+            $img->move('images/artikel', $name);
+            $artikel->image = $name;
+
+        }
+        $artikel->save();
+        return redirect()->route('artikel.index');
     }
 
     /**

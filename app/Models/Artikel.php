@@ -13,8 +13,14 @@ class Artikel extends Model
         'id',
         'judul_artikel',
         'deskripsi',
-        'gambar',
+        'image',
     ];
     
     public $timestamps = true;
+
+    public function deleteImage(){
+        if($this->image && file_exists(public_path('images/artikel' . $this->image))){
+            return unlink(public_path('images/artikel' . $this->image));
+        }
+    }
 }

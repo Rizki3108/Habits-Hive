@@ -15,7 +15,7 @@
         <ul class="metismenu" id="sidenav">
             <li class="menu-label">Home</li>
             <li>
-                <a href="{{route('home')}}">
+                <a href="{{ route('home') }}">
                     <div class="parent-icon"><i class="material-icons-outlined">home</i>
                     </div>
                     <div class="menu-title">Dashboard</div>
@@ -25,7 +25,7 @@
             <li class="menu-label">Data Tabel</li>
 
             <li>
-                <a href="{{route('user.index')}}" class="menu-link">
+                <a href="{{ route('user.index') }}" class="menu-link">
                     <div class="parent-icon"><i class="material-icons-outlined">person</i>
                     </div>
                     <div class="menu-title">Tabel User</div>
@@ -33,7 +33,7 @@
             </li>
 
             <li>
-                <a href="user-profile.html">
+                <a href="{{ route('artikel.index')}}">
                     <div class="parent-icon"><i class="material-icons-outlined">description</i>
                     </div>
                     <div class="menu-title">Tabel Artikel</div>

@@ -110,7 +110,7 @@
         <div class="container-fluid my-5 my-lg-0">
             <div class="row">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5 col-xxl-4 mx-auto">
-                    <div class="card rounded-4 mb-0 border-top border-4 border-primary border-gradient-1">
+                    <div class="card rounded-4 mb-0 border-top border-4 border-primary">
                         <div class="card-body p-5">
                             <h4 class="fw-bold" style="text-align: center">Login</h4>
                             {{-- <p class="mb-0">Enter your credentials to login your account</p> --}}
@@ -175,14 +175,13 @@
                                     <div class="col-12">
                                         <div class="d-grid">
                                             <button type="submit"
-                                                class="btn btn-grd-info btn-text-black">Login</button>
+                                                class="btn btn-grd-info btn-text-light">Login</button>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="text-start">
-                                            <p class="mb-0">Don't have an account? <a
-                                                    href="{{ route('register') }}">Sign
-                                                    up here</a></p>
+                                            <p class="mb-0">Belum punya akun? <a
+                                                    href="{{ route('register') }}">Daftar disini</a></p>
                                         </div>
                                     </div>
                                 </form>
