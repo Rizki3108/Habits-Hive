@@ -64,162 +64,62 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="col-xl-6 col-xxl-4 d-flex align-items-stretch">
-            <div class="card w-100 rounded-4">
-                <div class="card-header border-0 p-3 border-bottom">
-                    <div class="d-flex align-items-start justify-content-between">
-                        <div class="">
-                            <h5 class="mb-0">Data Artikel</h5>
-                        </div>
-                    </div>
+    <div class="col-xl-6 col-xxl-4 d-flex align-items-stretch">
+        <div class="card w-100 rounded-4">
+            <div class="card-body">
+                <div class="col-lg-3">
+                    <h6>Data artikel</h6>
                 </div>
-                <div class="card-body p-0">
-                    <div class="user-list p-3">
-                        <div class="d-flex flex-column gap-3">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Judul Artikel</th>
-                                        <th>Gambar</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                            <tbody>
-                                @foreach ($artikel as $item)
-                                    <th scope="row">{{ $loop->index + 1 }}</th>
-                                    <td>{{ $item->judul_artikel }}</td>
-                                    <td>
-                                        <img src="{{ asset('/images/artikel/' . $item->image) }}" width="45">
-                                    </td>
-                                @endforeach                
-                            </tbody>
-                        </div>
-                    </div>
-                </div>
+                <table class="table mb-0 table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Judul artikel</th>
+                            <th scope="col">Gambar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($artikel as $item)
+                            <tr>
+                                <th scope="row">{{ $loop->index + 1 }}</th>
+                                <td>{{ $item->judul_artikel }}</td>
+                                <td>
+                                    <img src="{{ asset('/images/artikel/' . $item->image) }}" width="100">
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div class="col-xl-6 col-xxl-4 d-flex align-items-stretch">
-            <div class="card w-100 rounded-4">
-                <div class="card-body">
-                    <div class="d-flex align-items-start justify-content-between mb-3">
-                        <div class="">
-                            <h5 class="mb-0 fw-bold">Social Leads</h5>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-column justify-content-between gap-4">
-                        <div class="d-flex align-items-center gap-4">
-                            <div class="d-flex align-items-center gap-3 flex-grow-1">
-                                <img src="{{ asset('backend/assets/images/apps/17.png') }}" width="32" alt="">
-                                <p class="mb-0">Facebook</p>
-                            </div>
-                            <div class="">
-                                <p class="mb-0 fs-6">55%</p>
-                            </div>
-                            <div class="">
-                                <p class="mb-0 data-attributes">
-                                    <span
-                                        data-peity='{ "fill": ["#0d6efd", "rgb(255 255 255 / 10%)"], "innerRadius": 14, "radius": 18 }'>5/7</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center gap-4">
-                            <div class="d-flex align-items-center gap-3 flex-grow-1">
-                                <img src="{{ asset('backend/assets/images/apps/18.png') }}" width="32" alt="">
-                                <p class="mb-0">LinkedIn</p>
-                            </div>
-                            <div class="">
-                                <p class="mb-0 fs-6">67%</p>
-                            </div>
-                            <div class="">
-                                <p class="mb-0 data-attributes">
-                                    <span
-                                        data-peity='{ "fill": ["#fc185a", "rgb(255 255 255 / 10%)"], "innerRadius": 14, "radius": 18 }'>5/7</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center gap-4">
-                            <div class="d-flex align-items-center gap-3 flex-grow-1">
-                                <img src="{{ asset('backend/assets/images/apps/19.png') }}" width="32" alt="">
-                                <p class="mb-0">Instagram</p>
-                            </div>
-                            <div class="">
-                                <p class="mb-0 fs-6">78%</p>
-                            </div>
-                            <div class="">
-                                <p class="mb-0 data-attributes">
-                                    <span
-                                        data-peity='{ "fill": ["#02c27a", "rgb(255 255 255 / 10%)"], "innerRadius": 14, "radius": 18 }'>5/7</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center gap-4">
-                            <div class="d-flex align-items-center gap-3 flex-grow-1">
-                                <img src="{{ asset('backend/assets/images/apps/20.png') }}" width="32"
-                                    alt="">
-                                <p class="mb-0">Snapchat</p>
-                            </div>
-                            <div class="">
-                                <p class="mb-0 fs-6">46%</p>
-                            </div>
-                            <div class="">
-                                <p class="mb-0 data-attributes">
-                                    <span
-                                        data-peity='{ "fill": ["#fd7e14", "rgb(255 255 255 / 10%)"], "innerRadius": 14, "radius": 18 }'>5/7</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center gap-4">
-                            <div class="d-flex align-items-center gap-3 flex-grow-1">
-                                <img src="{{ asset('backend/assets/images/apps/05.png') }}" width="32"
-                                    alt="">
-                                <p class="mb-0">Google</p>
-                            </div>
-                            <div class="">
-                                <p class="mb-0 fs-6">38%</p>
-                            </div>
-                            <div class="">
-                                <p class="mb-0 data-attributes">
-                                    <span
-                                        data-peity='{ "fill": ["#0dcaf0", "rgb(255 255 255 / 10%)"], "innerRadius": 14, "radius": 18 }'>5/7</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center gap-4">
-                            <div class="d-flex align-items-center gap-3 flex-grow-1">
-                                <img src="{{ asset('backend/assets/images/apps/08.png') }}" width="32"
-                                    alt="">
-                                <p class="mb-0">Altaba</p>
-                            </div>
-                            <div class="">
-                                <p class="mb-0 fs-6">15%</p>
-                            </div>
-                            <div class="">
-                                <p class="mb-0 data-attributes">
-                                    <span
-                                        data-peity='{ "fill": ["#6f42c1", "rgb(255 255 255 / 10%)"], "innerRadius": 14, "radius": 18 }'>5/7</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center gap-4">
-                            <div class="d-flex align-items-center gap-3 flex-grow-1">
-                                <img src="{{ asset('backend/assets/images/apps/07.png') }}" width="32"
-                                    alt="">
-                                <p class="mb-0">Spotify</p>
-                            </div>
-                            <div class="">
-                                <p class="mb-0 fs-6">12%</p>
-                            </div>
-                            <div class="">
-                                <p class="mb-0 data-attributes">
-                                    <span
-                                        data-peity='{ "fill": ["#ff00b3", "rgb(255 255 255 / 10%)"], "innerRadius": 14, "radius": 18 }'>5/7</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+    </div>
+
+    <div class="col-xl-6 col-xxl-4 d-flex align-items-stretch">
+        <div class="card w-100 rounded-4">
+            <div class="card-body">
+                <div class="col-lg-3">
+                    <h6>Data User</h6>
                 </div>
+                <table class="table mb-0 table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($user as $item)
+                <tr>
+                    <th scope="row">{{ $loop->index+1 }}</th>
+                    <td>{{ $item->name }}</td>
+                    <td>{{ $item->email }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
             </div>
         </div>
     </div>
