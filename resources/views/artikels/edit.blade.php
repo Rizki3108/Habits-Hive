@@ -4,29 +4,25 @@
     <div class="col-12 col-xl-12">
         <div class="card">
             <div class="card-body p-4">
-                <h5 class="mb-4">Tambah Artikel</h5>
+                <h5 class="mb-4">Edit Artikel</h5>
                 <form class="row g-3" method="POST" action="{{ route('artikel.update', $artikel->id) }}" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="col-md-4x">
                         <label for="input13" class="form-label">Judul Artikel</label>
                         <div class="position-relative">
-                            <input type="text" name="judul_artikel" class="form-control @error('name') is-invalid @enderror"
-                                id="input13" value="{{ old('name') }}" placeholder="Judul" required>
+                            <input type="text" name="judul_artikel" class="form-control id="input13" 
+                            value="{{$artikel->judul_artikel}}">
                             <span class="position-absolute top-50 translate-middle-y"></span>
-                            @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
                         </div>
                     </div>
                     <div class="col-md-12">
                         <label class="form-label">Deskripsi</label>
-                        <textarea name="deskripsi" class="form-control" cols="30" rows="2" placeholder="Deskripsi..."></textarea>
+                        <textarea name="deskripsi" class="form-control" cols="30" rows="2">{{$artikel->deskripsi}}</textarea>
                     </div>
                     <div class="col-md-12">
-                        <label class="form-label">Gambar</label>
+                        <label class="form-label">Gambar</label><br>
+                        <img src="{{asset('images/artikel/' . $artikel->image)}}" width="100">
                         <input name="image" type="file" class="form-control">
                     </div>
                     <div class="col-md-12">

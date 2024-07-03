@@ -6,7 +6,7 @@
     <div class="card">
         <div class="card-body">
             <div class="col-lg-3">
-                <a href="{{ route('artikel.create') }}" class="btn btn-success px-5 raised d-flex gap-2">
+                <a href="{{ route('artikel.create') }}" class="btn btn-grd-success px-5 raised d-flex gap-2 text-light">
                     <i class="material-icons-outlined">description</i>
                     Tambah artikel
                 </a>
@@ -30,22 +30,25 @@
                             <td>
                                 <img src="{{ asset('/images/artikel/' . $item->image) }}" width="100">
                             </td>
-                            <td>
-                                <a href="{{ route('artikel.show', $item->id) }}" class="btn btn-primary gap-2"><i
-                                        class="material-icons-outlined">search</i></a>
-                                <a href="{{ route('artikel.edit', $item->id) }}" class="btn btn-warning px-5">Edit</a>
-                                <a class="btn ripple btn-danger px-5" href="#"
-                                    onclick="event.preventDefault();
-                            document.getElementById('destroy-form').submit();">
-                                    Hapus
-                                </a>
+                            <form id="destroy-form" action="{{ route('artikel.destroy', $item->id) }}" method="POST"
+                                class="d-none">
+                                @csrf
+                                @method('DELETE')
 
-                                <form id="destroy-form" action="{{ route('artikel.destroy', $item->id) }}" method="POST"
-                                    class="d-none">
-                                    @method('DELETE')
-                                    @csrf
-                                </form>
-                            </td>
+                                <td>
+                                    <a href="{{ route('artikel.show', $item->id) }}" class="btn btn-grd-info gap-2 text-light"><i
+                                            class="material-icons-outlined">search</i></a>
+
+                                    <a href="{{ route('artikel.edit', $item->id) }}" class="btn btn-grd-warning gap-2 text-light"><i
+                                            class="material-icons-outlined">edit</i></a>
+
+                                    <button type="submit" class="btn btn-grd-danger gap-2 text-light"><i
+                                            class="material-icons-outlined">delete</i></button>
+                                    {{-- <a href="{{ route('artikel.edit', $item->id) }}" class="btn btn-warning gap-2"><i
+                                        class="material-icons-outlined">edit</i></a> --}}
+                                </td>
+
+                            </form>
                         </tr>
                     @endforeach
                 </tbody>
