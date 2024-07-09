@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\isAdmin;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -52,6 +55,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'profile_photo' => ['nullable', 'image', 'max:2048'],
         ]);
     }
 
@@ -63,10 +67,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $profilePhoto = null;
+
+        if (request()->hasFile('profile_photo')) {
+            $profilePhoto = request()->file('profile_photo')->store('profile_photos', 'public');
+        }
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'profile_photo' => $profilePhoto,
         ]);
     }
 }

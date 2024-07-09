@@ -82,9 +82,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Maxton | Register</title>
+    <title>Habits Hive | Register</title>
     <!--favicon-->
-    <link rel="icon" href="{{ asset('backend/assets/images/favicon-32x32.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('backend/assets/images/beeicon.png') }}" type="image/png">
     <!-- loader-->
     <link href="{{ asset('backend/assets/css/pace.min.css') }}" rel="stylesheet">
     <script src="{{ asset('backend/assets/js/pace.min.js') }}"></script>
@@ -121,7 +121,7 @@
                         {{-- <p class="mb-0">Enter your credentials to create your account</p> --}}
 
                         <div class="form-body my-4">
-                            <form action="{{ route('register') }}"method="POST" class="row g-3">
+                            <form action="{{ route('register') }}"method="POST" class="row g-3" enctype="multipart/form-data">
                                 @csrf
                                 <div class="col-12">
                                     <label for="inputUsername" class="form-label">Username</label>
@@ -192,6 +192,10 @@
                                             </span>
                                         @enderror
                                     </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label">Foto Profil</label>
+                                    <input name="image" type="file" class="form-control" name="profile_photo">
                                 </div>
                                 {{-- <div class="col-12">
                                     <div class="form-check form-switch">

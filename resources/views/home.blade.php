@@ -1,6 +1,7 @@
 @extends('layouts.backend')
 
 @section('content')
+    {{-- @dd($artikel, $user) <!-- Debugging --> --}}
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
         <div class="breadcrumb-title pe-3">Admin</div>
@@ -23,8 +24,11 @@
                     <div class="row">
                         <div class="col-12 col-sm-7">
                             <div class="d-flex align-items-center gap-3 mb-5">
-                                <img src="https://placehold.co/110x110/png" class="rounded-circle bg-grd-info p-1"
-                                    width="60" height="60" alt="user">
+                                {{-- @if ($user->profile_photo)
+                                    <img src="{{ Storage::url($user->profile_photo) }}"
+                                        class="rounded-circle bg-grd-info p-1" width="60" height="60"
+                                        alt="{{ $user->name }}">
+                                @endif --}}
                                 <div class="">
                                     <p class="mb-0 fw-semibold">Selamat datang</p>
                                     <h4 class="fw-semibold mb-0 fs-4 mb-0">{{ Auth::user()->name }}</h4>
@@ -65,7 +69,7 @@
             </div>
         </div>
     </div>
-
+{{-- 
     <div class="col-xl-6 col-xxl-4 d-flex align-items-stretch">
         <div class="card w-100 rounded-4">
             <div class="card-body">
@@ -103,24 +107,24 @@
                     <h6>Data User</h6>
                 </div>
                 <table class="table mb-0 table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($user as $item)
-                <tr>
-                    <th scope="row">{{ $loop->index+1 }}</th>
-                    <td>{{ $item->name }}</td>
-                    <td>{{ $item->email }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($user as $item)
+                            <tr>
+                                <th scope="row">{{ $loop->index + 1 }}</th>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->email }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection

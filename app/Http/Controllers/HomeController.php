@@ -9,16 +9,6 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
@@ -27,6 +17,7 @@ class HomeController extends Controller
     {
         $artikel = Artikel::all();
         $user = User::all();
+        // dd($artikel, $user); // Debugging
         return view('home', compact('artikel', 'user'));
     }
 }

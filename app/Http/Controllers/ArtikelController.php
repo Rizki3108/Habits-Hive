@@ -57,8 +57,8 @@ class ArtikelController extends Controller
             $name = rand(1000, 9999) . $img->getClientOriginalName();
             $img->move('images/artikel', $name);
             $artikel->image = $name;
-
         }
+        
         $artikel->save();
         return redirect()->route('artikel.index');
     }

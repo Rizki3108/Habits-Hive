@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -129,4 +129,227 @@
             </div>
         </div>
     </body>
-</html>
+</html> --}}
+
+
+@extends('layouts.frontend')
+
+@section('content')
+    <main>
+        <!-- hero start -->
+        <section id="home" class=" hero hero-style-one pos-rel">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <div class="hero__content style-2">
+                            <h1 class="title wow fadeInUp" data-wow-delay="0ms" data-wow-duration=".5s">Selamat
+                                datang
+                                di <span class="shape">Habits Hive</span> Ekspresikan dirimu dan buat dirimu lebih
+                                baik</h1>
+                            <p class="wow fadeInUp mb-45" data-wow-delay="200ms" data-wow-duration=".5s">jadikan dirimu
+                                lebih baik dengan<br> menjadi lebih produktif.
+                            </p>
+                            <div class="button wow fadeInUp" data-wow-delay="400ms" data-wow-duration=".5s">
+                                <a href="{{ route('login') }}" type="button" class="thm-btn thm-btn--gradient">Mulai
+                                    sekarang</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero__img-bg">
+                    <div class="hero__image pos-rel">
+                        <img src="{{ asset('frontend/assets/img/hero/image.png') }}" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="hero__shape2">
+                <div class="shape shape--1" data-parallax='{"y" : 50}'>
+                    <img src="{{ asset('frontend/assets/img/shape/h_shape3.png') }}" alt="">
+                </div>
+                <div class="shape shape--2" data-parallax='{"y" : 70}'>
+                    <img src="{{ asset('frontend/assets/img/shape/h_shape4.png') }}" alt="">
+                </div>
+                <div class="shape shape--3" data-parallax='{"x" : 90}'>
+                    <img src="{{ asset('frontend/assets/img/shape/h_shape5.png') }}" alt="">
+                </div>
+            </div>
+        </section>
+        <!-- hero start -->
+
+        <!-- feature start -->
+        <section id="fitur" class="feature pos-rel">
+            <div class="container">
+                <div class="row align-items-end">
+                    <div class="col-lg-6">
+                        <div class="pb-105">
+                            <div class="sec-title mb-60">
+                                <h2 class="sec-title__title">Dapatkan pengalaman menakjubkan yang disediakan <span
+                                        class="shape">Habits
+                                        Hive.</span></h2>
+                            </div>
+                            <ul class="feature__content-list list-unstyled">
+                                <li>
+                                    <h3>Tampilan menarik</h3>
+                                    <p>Dengan menyajikan tampilan aplikasi yg ramah dan design yg
+                                        menarik untuk dilihat pengguna.</p>
+                                </li>
+                                <li>
+                                    <h3>Mudah</h3>
+                                    <p>Penggunaan sistem aplikasi yang mudah dan simpel.
+                                        dapat dipahami pada awal penggunaan.</p>
+                                </li>
+                                <li>
+                                    <h3>Cepat</h3>
+                                    <p>Aplikasi dengan penggunaan yang cepat dan praktis
+                                        yang memudahkan pengguna.</p>
+                                </li>
+                                <li>
+                                    <h3>Gratis</h3>
+                                    <p>aplikasi dengan penawaran fitur gratis untuk semua pengguna
+                                        .</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="feature__img">
+                            <img src="{{ asset('frontend/assets/img/feature/image2 (1).png') }}" alt="">
+                            <div class="feature__img-shape">
+                                <div class="shape shape--1" data-parallax='{"y" : 80}'>
+                                    <img src="{{ asset('frontend/assets/img/shape/fs_01.png') }}" alt="">
+                                </div>
+                                <div class="shape shape--2" data-parallax='{"x" : 80}'>
+                                    <img src="{{ asset('frontend/assets/img/shape/fs_02.png') }}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- feature end -->
+
+        <!-- testimonial start -->
+        <section id="ulasan" class="testimonial testimonial__gr-bg pt-140 pb-105">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="sec-title mb-50">
+                            <h2 class="sec-title__title">Real Stories from Satisfied Customers</h2>
+                        </div>
+                        <div class="template__nav testimonial__button mb-10">
+                            <div class="template-nav-item tm-button-prev"><i class="far fa-arrow-left"></i></div>
+                            <div class="template-nav-item tm-button-next"><i class="far fa-arrow-right"></i></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="testimonial__active swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="testimonial__single swiper-slide">
+                                    <div class="rating ul_li_between mb-50">
+                                        <span>5 - Star Rating</span>
+                                        <img src="{{ asset('frontend/assets/img/icon/rating.png') }}" alt="">
+                                    </div>
+                                    <p>"You've saved our business! If you aren't sure, always go for Chat bot. I
+                                        will let my mum know about this, she could really make use of Chat bot! I
+                                        couldn't have asked for more than this I wish I would have thought of it
+                                        first. "</p>
+                                    <div class="author ul_li">
+                                        <div class="avatar">
+                                            <img src="{{ asset('frontend/assets/img/avatar/tm_avatar1.jpg') }}"
+                                                alt="">
+                                        </div>
+                                        <div class="content">
+                                            <h4>Florida Campain</h4>
+                                            <span>Web Developer</span>
+                                        </div>
+                                    </div>
+                                    <div class="quote">
+                                        <img src="{{ asset('frontend/assets/img/icon/quote_icon.svg') }}" alt="">
+                                    </div>
+                                </div>
+                                <div class="testimonial__single swiper-slide">
+                                    <div class="rating ul_li_between mb-50">
+                                        <span>5 - Star Rating</span>
+                                        <img src="{{ asset('frontend/assets/img/icon/rating.png') }}" alt="">
+                                    </div>
+                                    <p>"Man, this thing is getting better and better as I learn more about it. It's
+                                        really wonderful. If you aren't sure, always go for Chat bot. I am really
+                                        satisfied with my Chat botI wish I would have thought of it first. Just what
+                                        I was looking for.</p>
+                                    <div class="author ul_li">
+                                        <div class="avatar">
+                                            <img src="{{ asset('frontend/assets/img/avatar/tm_avatar2.jpg') }}"
+                                                alt="">
+                                        </div>
+                                        <div class="content">
+                                            <h4>Florida Campain</h4>
+                                            <span>Web Developer</span>
+                                        </div>
+                                    </div>
+                                    <div class="quote">
+                                        <img src="{{ asset('frontend/assets/img/icon/quote_icon.svg') }}" alt="">
+                                    </div>
+                                </div>
+                                <div class="testimonial__single swiper-slide">
+                                    <div class="rating ul_li_between mb-50">
+                                        <span>5 - Star Rating</span>
+                                        <img src="{{ asset('frontend/assets/img/icon/rating.png') }}" alt="">
+                                    </div>
+                                    <p>"You've saved our business! If you aren't sure, always go for Chat bot. I
+                                        will let my mum know about this, she could really make use of Chat bot! I
+                                        couldn't have asked for more than this I wish I would have thought of it
+                                        first. "</p>
+                                    <div class="author ul_li">
+                                        <div class="avatar">
+                                            <img src="{{ asset('frontend/assets/img/avatar/tm_avatar1.jpg') }}"
+                                                alt="">
+                                        </div>
+                                        <div class="content">
+                                            <h4>Florida Campain</h4>
+                                            <span>Web Developer</span>
+                                        </div>
+                                    </div>
+                                    <div class="quote">
+                                        <img src="{{ asset('frontend/assets/img/icon/quote_icon.svg') }}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- testimonial end -->
+
+        <!-- cta start -->
+        <section id="slogan" class="cta pos-rel pb-140">
+            <div class="cta__shape">
+                <div class="shape shape--1" data-parallax='{"y" : -460}'>
+                    <img src="{{ asset('frontend/assets/img/shape/cta_shape1.png') }}" alt="">
+                </div>
+                <div class="shape shape--2" data-parallax='{"y" : -460}'>
+                    <img src="{{ asset('frontend/assets/img/shape/cta_shape2.png') }}" alt="">
+                </div>
+            </div>
+            <div class="container">
+                <div class="row mt-none-20">
+                    <div class="col-xl-9 col-lg-8 mt-20">
+                        <div class="sec-title">
+                            <h2 class="sec-title__title mb-25">Tunggu apalagi segera daftar dan buat dirimu mejadi lebih
+                                baik</h2>
+                            <p>Dengan pengalaman yang akan membuat hidupmu menjadi baru <br> Bersama Habits Hive.</p>
+                        </div>
+                    </div>
+                </div>
+                <ul class="footer__top cta-list ul_li_between mt-35">
+                    <li><i class="far fa-check"></i>Tetapkan Tujuanmu</li>
+                    <li><i class="far fa-check"></i>Lacak Kemajuanmu</li>
+                    <li><i class="far fa-check"></i>Capai Keberhasilanmu</li>
+                </ul>
+            </div>
+        </section>
+        <!-- cta end -->
+
+    </main>
+@endsection
