@@ -14,7 +14,8 @@ class CatatanController extends Controller
      */
     public function index()
     {
-        //
+        $catatan = Catatan::orderBy('id', 'desc')->get();
+        return view('catatans.index', compact('catatan'));
     }
 
     /**
@@ -24,7 +25,7 @@ class CatatanController extends Controller
      */
     public function create()
     {
-        //
+        return view('catatans.create');
     }
 
     /**
@@ -35,7 +36,22 @@ class CatatanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $catatan = new Catatan;
+        $catatan->judul_catatan = $request->judul_catatan;
+        $catatan->deksripsi = $request->deskripsi;
+        $catatan->tanggal = $request->pengingat;
+        $catatan->image = $request->image;
+
+        //upload image
+        if ($request->hasFile('image')) {
+            $img = $request->file('image');
+            $name = rand(1000, 9999) . $img->getClientOriginalName();
+            $img->move('images/catatan', $name);
+            $catatan->image = $name;
+        }
+
+        $catatan->save();
+        return redirect()->route('catatan.index');
     }
 
     /**

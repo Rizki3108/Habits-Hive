@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\CatatanController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\isAdmin;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,7 @@ Route::middleware(['auth', 'isUser'])->group(function () {
         return view('home.user');
     })->name('home.user');
 
+    Route::resource('catatan', CatatanController::class);
 });
 
 
