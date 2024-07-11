@@ -69,8 +69,8 @@
             </div>
         </div>
     </div>
-{{-- 
-    <div class="col-xl-6 col-xxl-4 d-flex align-items-stretch">
+
+    {{-- <div class="col-xl-6 col-xxl-4 d-flex align-items-stretch">
         <div class="card w-100 rounded-4">
             <div class="card-body">
                 <div class="col-lg-3">
@@ -98,9 +98,9 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div> --}}
 
-    <div class="col-xl-6 col-xxl-4 d-flex align-items-stretch">
+    {{-- <div class="col-xl-6 col-xxl-4 d-flex align-items-stretch">
         <div class="card w-100 rounded-4">
             <div class="card-body">
                 <div class="col-lg-3">

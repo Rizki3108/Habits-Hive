@@ -22,12 +22,6 @@
                     <td>{{ $item->email }}</td>
                     <td>
                         <a href="{{ route('user.show', $item->id) }}" class="btn btn-primary gap-2"><i class="material-icons-outlined">search</i></a>
-
-                        <form id="destroy-form" action="{{ route('user.destroy', $item->id) }}"
-                            method="POST" class="d-none">
-                            @method('DELETE')
-                            @csrf
-                        </form>
                     </td>
                 </tr>
                 @endforeach

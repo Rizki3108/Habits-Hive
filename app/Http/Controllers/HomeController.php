@@ -17,7 +17,6 @@ class HomeController extends Controller
     {
         $artikel = Artikel::all();
         $user = User::all();
-        // dd($artikel, $user); // Debugging
         return view('home', compact('artikel', 'user'));
     }
 }

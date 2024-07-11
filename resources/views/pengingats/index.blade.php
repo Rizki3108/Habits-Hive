@@ -10,7 +10,7 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Catatan</li>
+                    <li class="breadcrumb-item active" aria-current="page">Pengingat    </li>
                 </ol>
             </nav>
         </div>
@@ -18,8 +18,8 @@
     <!--end breadcrumb-->
 
     <div class="col-lg-3">
-        <a href="{{ route('catatan.create') }}" class="btn btn-grd btn-grd-info px-4 raised d-flex gap-4">
-            <i class="material-icons-outlined">add</i>Tambah Catatan</button>
+        <a href="{{ route('catatan.create') }}" class="btn btn-grd btn-grd-info px-6 raised d-flex gap-4">
+            <i class="material-icons-outlined">add</i>Tambah Pengingat</button>
         </a>
     </div>
 

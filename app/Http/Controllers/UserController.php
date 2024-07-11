@@ -57,9 +57,15 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+{
+    $user = User::find($id);
+
+    if (!$user) {
+        return redirect()->route('user.index')->with('error', 'User not found.');
     }
+
+    return view('user.show', compact('user'));
+}
 
     /**
      * Show the form for editing the specified resource.

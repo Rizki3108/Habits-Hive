@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Catatan;
 use Illuminate\Http\Request;
 
-class CatatanController extends Controller
+class PengingatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class CatatanController extends Controller
     public function index()
     {
         $catatan = Catatan::orderBy('id', 'desc')->get();
-        return view('catatans.index', compact('catatan'));
+        return view('pengingats.index', compact('catatan'));
     }
 
     /**
@@ -25,7 +25,7 @@ class CatatanController extends Controller
      */
     public function create()
     {
-        return view('catatans.create');
+        return view('pengingats.create');
     }
 
     /**
@@ -51,7 +51,7 @@ class CatatanController extends Controller
         }
 
         $catatan->save();
-        return redirect()->route('catatan.index');
+        return redirect()->route('pengingat.index');
     }
 
     /**
@@ -62,7 +62,7 @@ class CatatanController extends Controller
      */
     public function show(Catatan $catatan)
     {
-        return view('catatans.show', compact('catatan'));
+        return view('pengingats.show', compact('catatan'));
     }
 
     /**
@@ -73,7 +73,7 @@ class CatatanController extends Controller
      */
     public function edit(Catatan $catatan)
     {
-        return view('catatans.edit', compact('catatan'));
+        return view('pengingats.edit', compact('catatan'));
     }
 
     /**
@@ -99,7 +99,7 @@ class CatatanController extends Controller
             $catatan->image = $name;
         }
         $catatan->save();
-        return redirect()->route('catatan.index');
+        return redirect()->route('pengingat.index');
     }
 
     /**
@@ -112,6 +112,6 @@ class CatatanController extends Controller
     {
         $catatan = Catatan::findOrFail($id);
         $catatan->delete();
-        return redirect()->route('catatan.index');
+        return redirect()->route('pengingat.index');
     }
 }

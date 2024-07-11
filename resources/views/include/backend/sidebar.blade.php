@@ -15,7 +15,7 @@
         <ul class="metismenu" id="sidenav">
             <li class="menu-label">Home</li>
             <li>
-                <a href="{{ route('home') }}">
+                <a href="{{ route('admin.home') }}">
                     <div class="parent-icon"><i class="material-icons-outlined">home</i>
                     </div>
                     <div class="menu-title">Dashboard</div>
