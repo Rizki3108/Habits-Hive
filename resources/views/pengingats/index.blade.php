@@ -18,37 +18,37 @@
     <!--end breadcrumb-->
 
     <div class="col-lg-3">
-        <a href="{{ route('catatan.create') }}" class="btn btn-grd btn-grd-info px-6 raised d-flex gap-4">
+        <a href="{{ route('pengingat.create') }}" class="btn btn-grd btn-grd-info px-6 raised d-flex gap-4">
             <i class="material-icons-outlined">add</i>Tambah Pengingat</button>
         </a>
     </div>
 
     <!-- Tampilkan Catatan dalam Bentuk Kartu -->
     <div class="row mt-4">
-        @foreach ($catatan as $item)
+        @foreach ($pengingat as $item)
             <div class="col-md-4">
                 <div class="card mb-3">
                     <div class="card-body">
                         @if ($item->image)
-                            <img src="{{ asset('images/catatan/' . $item->image) }}" class="card-img-top" alt="Note Image">
+                            <img src="{{ asset('images/pengingat/' . $item->image) }}" class="card-img-top" alt="Note Image">
                         @endif
-                        <h5 class="card-title">{{ $item->judul_catatan }}</h5>
-                        <p class="card-text">{{ $item->deksripsi }}</p>
+                        <h5 class="card-title">{{ $item->judul_pengingat }}</h5>
+                        <p class="card-text">{{ $item->deskripsi }}</p>
                         <p class="card-text">{{ $item->tanggal }}</p>
-                        <form id="destroy-form" action="{{ route('catatan.destroy', $item->id) }}" method="POST">
+                        <form id="destroy-form" action="{{ route('pengingat.destroy', $item->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <div class="d-flex justify-content-end gap-2">
-                                <a href="{{ route('catatan.show', $item->id) }}"
-                                    class="btn btn-grd btn-grd-info btn-circle raised rounded-circle d-flex gap-2 wh-48"><i
+                                <a href="{{ route('pengingat.show', $item->id) }}"
+                                    class="btn btn-grd btn-grd-deep-blue btn-circle raised rounded-circle d-flex gap-2 wh-48"><i
                                         class="material-icons-outlined">search</i></a>
 
-                                <a href="{{ route('catatan.edit', $item->id) }}"
-                                    class="btn btn-grd btn-grd-warning btn-circle raised rounded-circle d-flex gap-2 wh-48"><i
+                                <a href="{{ route('pengingat.edit', $item->id) }}"
+                                    class="btn btn-grd btn-grd-info btn-circle raised rounded-circle d-flex gap-2 wh-48"><i
                                         class="material-icons-outlined">edit</i></a>
 
                                 <button type="submit"
-                                    class="btn btn-grd btn-grd-danger btn-circle raised rounded-circle d-flex gap-2 wh-48">
+                                    class="btn btn-grd btn-grd-branding btn-circle raised rounded-circle d-flex gap-2 wh-48">
                                     <i class="material-icons-outlined">delete</i>
                                 </button>
                             </div>

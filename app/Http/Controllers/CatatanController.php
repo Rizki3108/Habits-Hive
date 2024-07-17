@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Catatan;
+use App\Models\Pengingat;
 use Illuminate\Http\Request;
 
 class CatatanController extends Controller
@@ -39,10 +40,9 @@ class CatatanController extends Controller
         $catatan = new Catatan;
         $catatan->judul_catatan = $request->judul_catatan;
         $catatan->deksripsi = $request->deskripsi;
-        $catatan->tanggal = $request->pengingat;
+        $catatan->tanggal = $request->tanggal; // Menggunakan 'tanggal' untuk catatan
         $catatan->image = $request->image;
 
-        //upload image
         if ($request->hasFile('image')) {
             $img = $request->file('image');
             $name = rand(1000, 9999) . $img->getClientOriginalName();
@@ -51,6 +51,22 @@ class CatatanController extends Controller
         }
 
         $catatan->save();
+
+        // Membuat pengingat baru jika tanggal ada
+        if ($request->filled('tanggal')) {
+            $pengingat = new Pengingat;
+            $pengingat->judul_pengingat = $request->judul_catatan; // Menggunakan judul catatan untuk judul pengingat
+            $pengingat->deskripsi = $request->deskripsi;
+            $pengingat->tanggal = $request->tanggal;
+            $pengingat->catatan_id = $catatan->id;
+            
+            if ($request->hasFile('image')) { // Use the same image from catatan
+            $pengingat->image = $catatan->image;
+        }
+
+            $pengingat->save();
+        }
+
         return redirect()->route('catatan.index');
     }
 
@@ -84,23 +100,58 @@ class CatatanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        $catatan = Catatan::findOrFail($id);
-        $catatan->judul_catatan = $request->judul_catatan;
-        $catatan->deksripsi = $request->deskripsi;
-        $catatan->tanggal = $request->pengingat;
-        $catatan->image = $request->image;
+{
+    $catatan = Catatan::findOrFail($id);
+    $catatan->judul_catatan = $request->judul_catatan;
+    $catatan->deksripsi = $request->deskripsi;
+    $catatan->tanggal = $request->tanggal;
+    $catatan->image = $request->image;
 
-        if ($request->hasFile('image')) {
-            $catatan->deleteImage();
-            $img = $request->file('image');
-            $name = rand(1000, 9999) . $img->getClientOriginalName();
-            $img->move('images/catatan', $name);
-            $catatan->image = $name;
-        }
-        $catatan->save();
-        return redirect()->route('catatan.index');
+    if ($request->hasFile('image')) {
+        $catatan->deleteImage();
+        $img = $request->file('image');
+        $name = rand(1000, 9999) . $img->getClientOriginalName();
+        $img->move('images/catatan', $name);
+        $catatan->image = $name;
     }
+
+    $catatan->save();
+
+    // Update pengingat jika ada tanggal
+    $pengingat = Pengingat::where('catatan_id', $catatan->id)->first();
+    if ($request->tanggal) {
+        if ($pengingat) {
+            $pengingat->judul_pengingat = $request->judul_catatan;
+            $pengingat->deskripsi = $request->deskripsi;
+            $pengingat->tanggal = $request->tanggal;
+
+            if ($request->hasFile('image')) { // Use the same image from catatan
+                $pengingat->deleteImage();
+                $pengingat->image = $catatan->image;
+            }
+
+            $pengingat->save();
+
+        } else {
+            $pengingat = new Pengingat;
+            $pengingat->judul_pengingat = $request->judul_catatan;
+            $pengingat->deskripsi = $request->deskripsi;
+            $pengingat->tanggal = $request->tanggal;
+            $pengingat->catatan_id = $catatan->id;
+
+            if ($request->hasFile('image')) { // Use the same image from catatan
+                $pengingat->image = $catatan->image;
+            }
+
+            $pengingat->save();
+        }
+    } elseif ($pengingat) {
+        $pengingat->delete();
+    }
+
+    return redirect()->route('catatan.index');
+}
+
 
     /**
      * Remove the specified resource from storage.

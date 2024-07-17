@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\isAdmin;
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -36,7 +39,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.create');
     }
 
     /**
@@ -47,7 +50,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->isAdmin = $request->is_admin;
+        $user->save();
+
+        return redirect()->route('user.index');
     }
 
     /**
@@ -56,16 +72,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-{
-    $user = User::find($id);
-
-    if (!$user) {
-        return redirect()->route('user.index')->with('error', 'User not found.');
+    public function show(User $user)
+    {
+        return view('user.show', compact('user'));
     }
-
-    return view('user.show', compact('user'));
-}
 
     /**
      * Show the form for editing the specified resource.
@@ -73,9 +83,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+     public function edit(User $user)
     {
-        //
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -85,9 +95,22 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => [
+                'required', 'string', 'email', 'max:255',
+                // use Illuminate\Validation\Rule;
+                Rule::unique('users')->ignore($user->id)
+            ],
+        ]);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->isAdmin = $request->is_admin;
+        $user->save();
+        return redirect()->route('user.index');
     }
 
     /**
@@ -96,8 +119,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        if (Auth::user()->id != $user->id) {
+            $user->delete();
+            return redirect()->route('user.index');
+        }
+        return redirect()->route('user.index');
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\CatatanController;
+use App\Http\Controllers\CatatanWithPengingatController;
 use App\Http\Controllers\PengingatController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -31,9 +32,10 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
         return view('home');
     })->name('admin.home');
 
-    Route::get('user', [UserController::class, 'index'])->name('user.index');
-    Route::get('/user/{id}', [UserController::class, 'show'])->name('user.show');
+    //user
+    Route::resource('user', UserController::class);
     
+    //artikel
     Route::resource('artikel', ArtikelController::class);
 });
 
@@ -43,6 +45,13 @@ Route::middleware(['auth', 'isUser'])->prefix('user')->group(function () {
         return view('home.user');
     })->name('user.home');
 
+    //CRUD catatan
     Route::resource('catatan', CatatanController::class);
+
+    //route untuk "jembatan perantara" membuat pengingat di halaman catatan
+    Route::get('/catatans/create-with-pengingat', [CatatanWithPengingatController::class, 'create'])->name('catatan_with_pengingat.create');
+    Route::post('/catatans/store-with-pengingat', [CatatanWithPengingatController::class, 'store'])->name('catatan_with_pengingat.store');
+
+    //CRUD pengingat
     Route::resource('pengingat', PengingatController::class);
 });

@@ -5,28 +5,29 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Catatan extends Model
+class Pengingat extends Model
 {
     use HasFactory;
 
     public $fillable = [
         'id',
-        'judul_catatan',
+        'judul_pengingat',
         'deskripsi',
         'tanggal',
         'image',
+        'catatan_id',
     ];
 
     public $timestamps = true;
 
-    public function pengingat()
+    public function catatan()
     {
-        return $this->hasOne(Pengingat::class);
+        return $this->belongsTo(Catatan::class);
     }
 
     public function deleteImage(){
-        if($this->image && file_exists(public_path('images/catatan' . $this->image))){
-            return unlink(public_path('images/catatan' . $this->image));
+        if($this->image && file_exists(public_path('images/pengingat' . $this->image))){
+            return unlink(public_path('images/pengingat' . $this->image));
         }
     }
 }

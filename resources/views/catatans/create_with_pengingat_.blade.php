@@ -4,8 +4,8 @@
     <div class="col-12 col-xl-12">
         <div class="card">
             <div class="card-body p-4">
-                <h5 class="mb-4">Tambah Catatan</h5>
-                <form class="row g-3" method="POST" action="{{ route('catatan.store') }}" enctype="multipart/form-data">
+                <h5 class="mb-4">Tambah Catatan dan Pengingat</h5>
+                <form class="row g-3" method="POST" action="{{ route('catatan_with_pengingat.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="col-md-4x">
                         <label for="input13" class="form-label">Judul catatan</label>

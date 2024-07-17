@@ -1,7 +1,6 @@
 @extends('layouts.userhome')
 
 @section('content')
-
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
         <div class="breadcrumb-title pe-3">User</div>
@@ -18,7 +17,7 @@
     <!--end breadcrumb-->
 
     <div class="col-lg-3">
-        <a href="{{ route('catatan.create') }}" class="btn btn-grd btn-grd-info px-4 raised d-flex gap-4">
+        <a href="{{ route('catatan_with_pengingat.create') }}" class="btn btn-grd btn-grd-info px-4 raised d-flex gap-4">
             <i class="material-icons-outlined">add</i>Tambah Catatan</button>
         </a>
     </div>
@@ -34,21 +33,23 @@
                         @endif
                         <h5 class="card-title">{{ $item->judul_catatan }}</h5>
                         <p class="card-text">{{ $item->deksripsi }}</p>
-                        <p class="card-text">{{ $item->tanggal }}</p>
+                        @if ($item->tanggal)
+                            <p class="card-text">{{ $item->tanggal }}</p>
+                        @endif
                         <form id="destroy-form" action="{{ route('catatan.destroy', $item->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <div class="d-flex justify-content-end gap-2">
                                 <a href="{{ route('catatan.show', $item->id) }}"
-                                    class="btn btn-grd btn-grd-info btn-circle raised rounded-circle d-flex gap-2 wh-48"><i
+                                    class="btn btn-grd btn-grd-deep-blue btn-circle raised rounded-circle d-flex gap-2 wh-48"><i
                                         class="material-icons-outlined">search</i></a>
 
                                 <a href="{{ route('catatan.edit', $item->id) }}"
-                                    class="btn btn-grd btn-grd-warning btn-circle raised rounded-circle d-flex gap-2 wh-48"><i
+                                    class="btn btn-grd btn-grd-info btn-circle raised rounded-circle d-flex gap-2 wh-48"><i
                                         class="material-icons-outlined">edit</i></a>
 
                                 <button type="submit"
-                                    class="btn btn-grd btn-grd-danger btn-circle raised rounded-circle d-flex gap-2 wh-48">
+                                    class="btn btn-grd btn-grd-branding btn-circle raised rounded-circle d-flex gap-2 wh-48">
                                     <i class="material-icons-outlined">delete</i>
                                 </button>
                             </div>

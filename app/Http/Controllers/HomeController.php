@@ -17,6 +17,6 @@ class HomeController extends Controller
     {
         $artikel = Artikel::all();
         $user = User::all();
-        return view('home', compact('artikel', 'user'));
+        return view('dashboard.home', compact('artikel', 'user'));
     }
 }

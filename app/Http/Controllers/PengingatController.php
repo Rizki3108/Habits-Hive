@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Catatan;
+use App\Models\Pengingat;
 use Illuminate\Http\Request;
 
 class PengingatController extends Controller
@@ -14,8 +14,8 @@ class PengingatController extends Controller
      */
     public function index()
     {
-        $catatan = Catatan::orderBy('id', 'desc')->get();
-        return view('pengingats.index', compact('catatan'));
+        $pengingat = Pengingat::orderBy('id', 'desc')->get();
+        return view('pengingats.index', compact('pengingat'));
     }
 
     /**
@@ -36,82 +36,86 @@ class PengingatController extends Controller
      */
     public function store(Request $request)
     {
-        $catatan = new Catatan;
-        $catatan->judul_catatan = $request->judul_catatan;
-        $catatan->deksripsi = $request->deskripsi;
-        $catatan->tanggal = $request->pengingat;
-        $catatan->image = $request->image;
+        $pengingat = new Pengingat;
+        $pengingat->judul_pengingat = $request->judul_pengingat;
+        $pengingat->deskripsi = $request->deskripsi;
+        $pengingat->tanggal = $request->tanggal;
+        $pengingat->image = $request->image;
 
         //upload image
         if ($request->hasFile('image')) {
             $img = $request->file('image');
             $name = rand(1000, 9999) . $img->getClientOriginalName();
-            $img->move('images/catatan', $name);
-            $catatan->image = $name;
+            $img->move('images/pengingat', $name);
+            $pengingat->image = $name;
         }
 
-        $catatan->save();
+        $pengingat->save();
         return redirect()->route('pengingat.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Catatan  $catatan
+     * @param  \App\Models\Pengingat  $pengingat
      * @return \Illuminate\Http\Response
      */
-    public function show(Catatan $catatan)
+    public function show(Pengingat $pengingat)
     {
-        return view('pengingats.show', compact('catatan'));
+        return view('pengingats.show', compact('pengingat'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Catatan  $catatan
+     * @param  \App\Models\Pengingat  $pengingat
      * @return \Illuminate\Http\Response
      */
-    public function edit(Catatan $catatan)
+    public function edit(Pengingat $pengingat)
     {
-        return view('pengingats.edit', compact('catatan'));
+        return view('pengingats.edit', compact('pengingat'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Catatan  $catatan
+     * @param  \App\Models\Pengingat  $pengingat
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $catatan = Catatan::findOrFail($id);
-        $catatan->judul_catatan = $request->judul_catatan;
-        $catatan->deksripsi = $request->deskripsi;
-        $catatan->tanggal = $request->pengingat;
-        $catatan->image = $request->image;
+        $pengingat = Pengingat::findOrFail($id);
+        $pengingat->judul_pengingat = $request->judul_pengingat;
+        $pengingat->deskripsi = $request->deskripsi;
+        $pengingat->tanggal = $request->tanggal;
+        $pengingat->image = $request->image;
 
         if ($request->hasFile('image')) {
-            $catatan->deleteImage();
+            $pengingat->deleteImage();
             $img = $request->file('image');
             $name = rand(1000, 9999) . $img->getClientOriginalName();
-            $img->move('images/catatan', $name);
-            $catatan->image = $name;
+            $img->move('images/pengingat', $name);
+            $pengingat->image = $name;
         }
-        $catatan->save();
+
+        // catatan_id diizinkan null
+        $pengingat->catatan_id = $request->catatan_id ?? null;
+
+        $pengingat->save();
         return redirect()->route('pengingat.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Catatan  $catatan
+     * @param  \App\Models\Pengingat  $pengingat
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $catatan = Catatan::findOrFail($id);
-        $catatan->delete();
+        $pengingat = Pengingat::findOrFail($id);
+        $pengingat->delete();
         return redirect()->route('pengingat.index');
     }
 }
