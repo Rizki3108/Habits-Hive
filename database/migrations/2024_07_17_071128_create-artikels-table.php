@@ -17,8 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('judul_artikel');
             $table->text('deskripsi');
+            $table->unsignedBigInteger('id_kategori');
             $table->string('image');
             $table->timestamps();
+
+            $table->foreign('id_kategori')->references('id')->on('kategoris')->onDelete('cascade');
         });
     }
 

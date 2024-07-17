@@ -14,7 +14,14 @@ class Artikel extends Model
         'judul_artikel',
         'deskripsi',
         'image',
+        'id_kategori',
     ];
+
+    public function kategori()
+{
+    return $this->belongsTo(Kategori::class, 'id_kategori');
+}
+
     
     public $timestamps = true;
 

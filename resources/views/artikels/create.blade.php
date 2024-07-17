@@ -10,8 +10,9 @@
                     <div class="col-md-4x">
                         <label for="input13" class="form-label">Judul Artikel</label>
                         <div class="position-relative">
-                            <input type="text" name="judul_artikel" class="form-control @error('name') is-invalid @enderror"
-                                id="input13" value="{{ old('name') }}" placeholder="Judul" required>
+                            <input type="text" name="judul_artikel"
+                                class="form-control @error('name') is-invalid @enderror" id="input13"
+                                value="{{ old('name') }}" placeholder="Judul" required>
                             <span class="position-absolute top-50 translate-middle-y"></span>
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -23,6 +24,16 @@
                     <div class="col-md-12">
                         <label class="form-label">Deskripsi</label>
                         <textarea name="deskripsi" class="form-control" cols="30" rows="2" placeholder="Deskripsi..."></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Nama Kategori</label>
+                        <select name="id_kategori" class="form-control">
+                            <option value=""></option>
+                            @foreach ($kategori as $item)
+                                <option value="{{ $item->id }}">
+                                    {{ $item->nama_kategori }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-md-12">
                         <label class="form-label">Gambar</label>

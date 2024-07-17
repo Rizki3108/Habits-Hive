@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artikel;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class ArtikelController extends Controller
@@ -35,7 +36,8 @@ class ArtikelController extends Controller
      */
     public function create()
     {
-        return view('artikels.create');
+        $kategori = Kategori::all();
+        return view('artikels.create', compact('kategori'));
     }
 
     /**
@@ -49,6 +51,7 @@ class ArtikelController extends Controller
         $artikel = new Artikel;
         $artikel->judul_artikel = $request->judul_artikel;
         $artikel->deskripsi = $request->deskripsi;
+        $artikel->id_kategori = $request->id_kategori;
         $artikel->image = $request->image;
 
         //upload image
@@ -80,9 +83,11 @@ class ArtikelController extends Controller
      * @param  \App\Models\Artikel  $artikel
      * @return \Illuminate\Http\Response
      */
-    public function edit(Artikel $artikel)
+    public function edit($id)
     {
-        return view('artikels.edit', compact('artikel'));
+        $artikel = Artikel::findOrFail($id);
+        $kategori = Kategori::all();
+        return view('artikels.edit', compact('artikel', 'kategori'));
     }
 
     /**
@@ -97,6 +102,7 @@ class ArtikelController extends Controller
         $artikel = Artikel::findOrFail($id);
         $artikel->judul_artikel = $request->judul_artikel;
         $artikel->deskripsi = $request->deskripsi;
+        $artikel->id_kategori = $request->id_kategori;
 
         if ($request->hasFile('image')) {
             $artikel->deleteImage();

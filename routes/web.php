@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\CatatanController;
 use App\Http\Controllers\CatatanWithPengingatController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PengingatController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +25,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/user/home', [UserController::class, 'home'])->middleware('auth')->name('user.home');
 
 // Rute untuk admin dengan prefix 'admin'
 Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
@@ -32,11 +33,14 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
         return view('home');
     })->name('admin.home');
 
-    //user
+    //CRUD User
     Route::resource('user', UserController::class);
     
-    //artikel
+    //CRUD Artikel
     Route::resource('artikel', ArtikelController::class);
+
+    //CRUD Kategori
+    Route::resource('kategori', KategoriController::class);
 });
 
 // Rute untuk user dengan prefix 'user'

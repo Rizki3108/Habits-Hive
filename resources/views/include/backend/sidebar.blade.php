@@ -33,12 +33,21 @@
             </li>
 
             <li>
+                <a href="{{ route('kategori.index')}}">
+                    <div class="parent-icon"><i class="material-icons-outlined">label</i>
+                    </div>
+                    <div class="menu-title">Tabel Kategori</div>
+                </a>
+            </li>
+            
+            <li>
                 <a href="{{ route('artikel.index')}}">
                     <div class="parent-icon"><i class="material-icons-outlined">description</i>
                     </div>
                     <div class="menu-title">Tabel Artikel</div>
                 </a>
             </li>
+
         </ul>
         <!--end navigation-->
     </div>

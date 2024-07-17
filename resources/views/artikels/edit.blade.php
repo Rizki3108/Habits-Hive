@@ -5,24 +5,34 @@
         <div class="card">
             <div class="card-body p-4">
                 <h5 class="mb-4">Edit Artikel</h5>
-                <form class="row g-3" method="POST" action="{{ route('artikel.update', $artikel->id) }}" enctype="multipart/form-data">
+                <form class="row g-3" method="POST" action="{{ route('artikel.update', $artikel->id) }}"
+                    enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="col-md-4x">
                         <label for="input13" class="form-label">Judul Artikel</label>
                         <div class="position-relative">
-                            <input type="text" name="judul_artikel" class="form-control id="input13" 
-                            value="{{$artikel->judul_artikel}}">
+                            <input type="text" name="judul_artikel" class="form-control id="input13"
+                                value="{{ $artikel->judul_artikel }}">
                             <span class="position-absolute top-50 translate-middle-y"></span>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <label class="form-label">Deskripsi</label>
-                        <textarea name="deskripsi" class="form-control" cols="30" rows="2">{{$artikel->deskripsi}}</textarea>
+                        <textarea name="deskripsi" class="form-control" cols="30" rows="2">{{ $artikel->deskripsi }}</textarea>
+                    </div>
+                    <div class="col-md-12">
+                        <label>Nama Kategori</label>
+                        <select name="id_kategori" class="form-control">
+                            @foreach ($kategori as $item)
+                                <option value="{{ $item->id }}" {{ $item->id == $artikel->id_kategori ? 'selected' : '' }}>
+                                    {{ $item->nama_kategori }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-md-12">
                         <label class="form-label">Gambar</label><br>
-                        <img src="{{asset('images/artikel/' . $artikel->image)}}" width="100">
+                        <img src="{{ asset('images/artikel/' . $artikel->image) }}" width="100">
                         <input name="image" type="file" class="form-control">
                     </div>
                     <div class="col-md-12">
