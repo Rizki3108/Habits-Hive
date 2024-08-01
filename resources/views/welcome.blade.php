@@ -147,7 +147,7 @@
                                 di <span class="shape">Habits Hive</span> Ekspresikan dirimu dan buat dirimu lebih
                                 baik</h1>
                             <p class="wow fadeInUp mb-45" data-wow-delay="200ms" data-wow-duration=".5s">jadikan dirimu
-                                lebih baik dengan<br> menjadi lebih produktif.
+                                lebih baik dengan<br> menjadi lebih produktif dan aktif.
                             </p>
                             <div class="button wow fadeInUp" data-wow-delay="400ms" data-wow-duration=".5s">
                                 <a href="{{ route('login') }}" type="button" class="thm-btn thm-btn--gradient">Mulai
