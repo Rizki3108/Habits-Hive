@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/user/home', [UserController::class, 'home'])->middleware('auth')->name('user.home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Rute untuk admin dengan prefix 'admin'
 Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
